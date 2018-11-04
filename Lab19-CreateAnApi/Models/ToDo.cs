@@ -13,6 +13,6 @@ namespace Lab19_CreateAnApi.Models
         public string DateTime { get; set; } = new DateTime().ToString();
 
         // Navigation Property
-        ToDoList ToDoList { get; set; }
+        public ToDoList ToDoList { get; set; }
     }
 }

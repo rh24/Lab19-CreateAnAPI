@@ -19,11 +19,11 @@ namespace Lab19_CreateAnApi.Controllers
             _context = context;
         }
 
-        //// GET api/ToDos
-        //[HttpGet]
-        //public ActionResult<IEnumerable<string>> Get()
-        //{
-        //    //return _context..ToListAsync();
-        //}
+        // GET api/ToDos
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get()
+        {
+            return _context.ToDos.ToListAsync();
+        }
     }
 }

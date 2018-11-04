@@ -12,6 +12,6 @@ namespace Lab19_CreateAnApi.Models
         public string DateTime { get; set; } = new DateTime().ToString();
 
         // Navigation properties
-        ICollection<ToDo> ToDos { get; set; }
+        public ICollection<ToDo> ToDos { get; set; }
     }
 }
