@@ -15,6 +15,7 @@ namespace Lab19_CreateAnApi.Controllers
     {
         private readonly CreateAnAPIDbContext _context;
 
+        // Inject db context
         public ToDosController(CreateAnAPIDbContext context)
         {
             _context = context;
@@ -57,6 +58,17 @@ namespace Lab19_CreateAnApi.Controllers
             else await Post(todo);
 
             return RedirectToAction("Get", new { id = todo.ID });
+        }
+
+        // DELETE api/ToDos/:id
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var foundToDo = _context.ToDos.FirstOrDefault(t => t.ID == id);
+
+            if (foundToDo != null) _context.ToDos.Remove(foundToDo);
+
+            return Ok();
         }
     }
 }
