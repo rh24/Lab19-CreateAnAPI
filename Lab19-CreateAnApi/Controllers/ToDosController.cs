@@ -27,6 +27,7 @@ namespace Lab19_CreateAnApi.Controllers
             return _context.ToDos;
         }
 
+        // GET api/ToDos/:id
         [HttpGet("{id}")]
         public ActionResult<ToDo> Get(int? id)
         {
@@ -36,6 +37,7 @@ namespace Lab19_CreateAnApi.Controllers
             return Ok(todo);
         }
 
+        // POST api/ToDos
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ToDo todo)
         {
