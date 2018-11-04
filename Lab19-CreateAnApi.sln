@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab19_CreateAnApi", "Lab19-CreateAnApi\Lab19_CreateAnApi.csproj", "{57F4D164-1E14-476E-B4D4-2703BA29FCC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab19_CreateAnApi", "Lab19-CreateAnApi\Lab19_CreateAnApi.csproj", "{57F4D164-1E14-476E-B4D4-2703BA29FCC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab19_Tests", "Lab19_Tests\Lab19_Tests.csproj", "{AFE57067-915E-4321-8125-57D1D48E72DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{57F4D164-1E14-476E-B4D4-2703BA29FCC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F4D164-1E14-476E-B4D4-2703BA29FCC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57F4D164-1E14-476E-B4D4-2703BA29FCC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFE57067-915E-4321-8125-57D1D48E72DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFE57067-915E-4321-8125-57D1D48E72DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFE57067-915E-4321-8125-57D1D48E72DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFE57067-915E-4321-8125-57D1D48E72DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
