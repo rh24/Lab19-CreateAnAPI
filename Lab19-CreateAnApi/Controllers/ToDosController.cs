@@ -35,5 +35,14 @@ namespace Lab19_CreateAnApi.Controllers
 
             return Ok(todo);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] ToDo todo)
+        {
+            await _context.ToDos.AddAsync(todo);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Get", new { id = todo.ID });
+        }
     }
 }
