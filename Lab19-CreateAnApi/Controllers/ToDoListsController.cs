@@ -9,7 +9,7 @@ namespace Lab19_CreateAnApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ToDoListController : ControllerBase
+    public class ToDoListsController : ControllerBase
     {
     }
 }

@@ -10,13 +10,20 @@ namespace Lab19_CreateAnApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ToDoController : ControllerBase
+    public class ToDosController : ControllerBase
     {
         private readonly CreateAnAPIDbContext _context;
 
-        public ToDoController(CreateAnAPIDbContext context)
+        public ToDosController(CreateAnAPIDbContext context)
         {
             _context = context;
         }
+
+        //// GET api/ToDos
+        //[HttpGet]
+        //public ActionResult<IEnumerable<string>> Get()
+        //{
+        //    //return _context..ToListAsync();
+        //}
     }
 }
