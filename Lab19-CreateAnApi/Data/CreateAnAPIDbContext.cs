@@ -14,7 +14,7 @@ namespace Lab19_CreateAnApi.Data
 
         }
 
-        DbSet<ToDo> ToDos { get; set; }
-        DbSet<ToDoList> ToDoLists { get; set; }
+        public DbSet<ToDo> ToDos { get; set; }
+        public DbSet<ToDoList> ToDoLists { get; set; }
     }
 }
