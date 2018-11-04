@@ -46,5 +46,17 @@ namespace Lab19_CreateAnApi.Controllers
 
             return RedirectToAction("Get", new { id = todo.ID });
         }
+
+        // PUT api/ToDos/:id
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] ToDo todo)
+        {
+            var foundTodo = _context.ToDos.FirstOrDefault(t => t.ID == id);
+
+            if (todo != null) _context.ToDos.Update(todo);
+            else await Post(todo);
+
+            return RedirectToAction("Get", new { id = todo.ID });
+        }
     }
 }
