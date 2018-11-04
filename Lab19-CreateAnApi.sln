@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab19-CreateAnApi", "Lab19-CreateAnApi\Lab19-CreateAnApi.csproj", "{57F4D164-1E14-476E-B4D4-2703BA29FCC8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab19_CreateAnApi", "Lab19-CreateAnApi\Lab19_CreateAnApi.csproj", "{57F4D164-1E14-476E-B4D4-2703BA29FCC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
