@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace Lab19_CreateAnApi.Controllers
 {
@@ -10,6 +11,13 @@ namespace Lab19_CreateAnApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IConfiguration Configuration;
+
+        public ValuesController(IConfiguration config)
+        {
+            Configuration = config;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
