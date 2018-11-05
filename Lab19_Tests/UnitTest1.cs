@@ -10,7 +10,7 @@ namespace Lab19_Tests
     public class UnitTest1
     {
         [Fact]
-        public void CreateToDo()
+        public void CRUDToDos()
         {
             DbContextOptions<CreateAnAPIDbContext> options = new DbContextOptionsBuilder<CreateAnAPIDbContext>().UseInMemoryDatabase("ToDos").Options;
 
@@ -35,6 +35,36 @@ namespace Lab19_Tests
                 db.Remove(foundToDo);
                 db.SaveChanges();
                 bool deleted = db.ToDos.FirstOrDefault(t => t.ID == foundToDo.ID) == null;
+                Assert.True(deleted);
+            }
+        }
+
+        [Fact]
+        public void CRUDToDoLists()
+        {
+            DbContextOptions<CreateAnAPIDbContext> options = new DbContextOptionsBuilder<CreateAnAPIDbContext>().UseInMemoryDatabase("ToDoLists").Options;
+
+            using (CreateAnAPIDbContext db = new CreateAnAPIDbContext(options))
+            {
+                // CREATE
+                ToDoList tdl = new ToDoList() { Name = "Monday errands" };
+                db.Add(tdl);
+                db.SaveChanges();
+
+                // READ
+                var foundToDoList = db.ToDoLists.FirstOrDefault(t => t.ID == tdl.ID);
+                Assert.Equal(foundToDoList.ID, tdl.ID);
+
+                // UPDATE
+                foundToDoList.Name = "Tuesday errands";
+                db.Update(foundToDoList);
+                db.SaveChanges();
+                Assert.Equal("Tuesday errands", foundToDoList.Name);
+
+                // DELETE
+                db.Remove(foundToDoList);
+                db.SaveChanges();
+                bool deleted = db.ToDoLists.FirstOrDefault(t => t.ID == foundToDoList.ID) == null;
                 Assert.True(deleted);
             }
         }
