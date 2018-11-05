@@ -68,5 +68,32 @@ namespace Lab19_Tests
                 Assert.True(deleted);
             }
         }
+
+        [Fact]
+        public void AddItemsToToDoList()
+        {
+            ToDoList tdl = new ToDoList() { Name = "Sunday errands" };
+            ToDo td = new ToDo() { Name = "Watch tv", IsComplete = false };
+            tdl.ToDos.Add(td);
+            var foundToDo = tdl.ToDos.First(t => t.Name == td.Name);
+
+            Assert.Equal("Watch tv", foundToDo.Name);
+        }
+
+        [Fact]
+        public void RemoveItemFromToDoList()
+        {
+            ToDoList tdl = new ToDoList() { Name = "Sunday errands" };
+            ToDo td = new ToDo() { Name = "Watch tv", IsComplete = false };
+            td.ToDoList = tdl;
+            //tdl.ToDos.Add(td);
+            ToDo td2 = new ToDo() { Name = "Feed the cat", IsComplete = true };
+            //tdl.ToDos.Remove(td);
+            td2.ToDoList = tdl;
+            tdl.ToDos.Remove(td);
+
+            var foundToDo = tdl.ToDos.Select(t => t.Name == "Watch tv");
+            Assert.Null(foundToDo);
+        }
     }
 }
