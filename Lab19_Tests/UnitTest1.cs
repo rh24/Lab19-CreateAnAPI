@@ -4,11 +4,15 @@ using Lab19_CreateAnApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Lab19_CreateAnApi.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Lab19_Tests
 {
     public class UnitTest1
     {
+        /// <summary>
+        /// Test CRUD operations on ToDos table.
+        /// </summary>
         [Fact]
         public void CRUDToDos()
         {
@@ -39,6 +43,9 @@ namespace Lab19_Tests
             }
         }
 
+        /// <summary>
+        /// Test CRUD operations on ToDoLists table and test that ToDos can be added to a ToDoList's ToDo's ICollection, as well as removed from it.
+        /// </summary>
         [Fact]
         public void CRUDToDoLists()
         {
@@ -51,9 +58,22 @@ namespace Lab19_Tests
                 db.Add(tdl);
                 db.SaveChanges();
 
+                // Test Adding to ToDoList
+                var foundToDoList = db.ToDoLists.First(t => t.ID == tdl.ID);
+                ToDo td = new ToDo() { Name = "Watch tv", IsComplete = false };
+                td.ToDoList = foundToDoList;
+                foundToDoList.ToDos = new List<ToDo>();
+                foundToDoList.ToDos.Add(td);
+                var foundToDo = foundToDoList.ToDos.FirstOrDefault(t => t.ID == td.ID);
+                Assert.Equal("Watch tv", foundToDo.Name);
+
+                // Test Removing from ToDoList
+                foundToDoList.ToDos.Remove(td);
+                Assert.Equal(0, foundToDoList.ToDos.Count);
+
                 // READ
-                var foundToDoList = db.ToDoLists.FirstOrDefault(t => t.ID == tdl.ID);
-                Assert.Equal(foundToDoList.ID, tdl.ID);
+                var foundTdl = db.ToDoLists.FirstOrDefault(t => t.ID == tdl.ID);
+                Assert.Equal(foundTdl.ID, tdl.ID);
 
                 // UPDATE
                 foundToDoList.Name = "Tuesday errands";
@@ -67,33 +87,6 @@ namespace Lab19_Tests
                 bool deleted = db.ToDoLists.FirstOrDefault(t => t.ID == foundToDoList.ID) == null;
                 Assert.True(deleted);
             }
-        }
-
-        [Fact]
-        public void AddItemsToToDoList()
-        {
-            ToDoList tdl = new ToDoList() { Name = "Sunday errands" };
-            ToDo td = new ToDo() { Name = "Watch tv", IsComplete = false };
-            tdl.ToDos.Add(td);
-            var foundToDo = tdl.ToDos.First(t => t.Name == td.Name);
-
-            Assert.Equal("Watch tv", foundToDo.Name);
-        }
-
-        [Fact]
-        public void RemoveItemFromToDoList()
-        {
-            ToDoList tdl = new ToDoList() { Name = "Sunday errands" };
-            ToDo td = new ToDo() { Name = "Watch tv", IsComplete = false };
-            td.ToDoList = tdl;
-            //tdl.ToDos.Add(td);
-            ToDo td2 = new ToDo() { Name = "Feed the cat", IsComplete = true };
-            //tdl.ToDos.Remove(td);
-            td2.ToDoList = tdl;
-            tdl.ToDos.Remove(td);
-
-            var foundToDo = tdl.ToDos.Select(t => t.Name == "Watch tv");
-            Assert.Null(foundToDo);
         }
     }
 }
