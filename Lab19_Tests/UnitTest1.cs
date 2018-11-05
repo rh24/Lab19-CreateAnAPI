@@ -16,12 +16,26 @@ namespace Lab19_Tests
 
             using (CreateAnAPIDbContext db = new CreateAnAPIDbContext(options))
             {
+                // CREATE
                 ToDo td = new ToDo() { Name = "Walk the cat", IsComplete = true };
                 db.Add(td);
                 db.SaveChanges();
 
+                // READ
                 var foundToDo = db.ToDos.FirstOrDefault(todo => todo.ID == td.ID);
                 Assert.Equal(td.ID, foundToDo.ID);
+
+                // UPDATE
+                foundToDo.Name = "Cook dinner";
+                db.Update(foundToDo);
+                db.SaveChanges();
+                Assert.Equal("Cook dinner", foundToDo.Name);
+
+                // DELETE
+                db.Remove(foundToDo);
+                db.SaveChanges();
+                bool deleted = db.ToDos.FirstOrDefault(t => t.ID == foundToDo.ID) == null;
+                Assert.True(deleted);
             }
         }
     }
