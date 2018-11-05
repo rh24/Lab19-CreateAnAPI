@@ -23,7 +23,6 @@ namespace Lab19_Tests
                 var foundToDo = db.ToDos.FirstOrDefault(todo => todo.ID == td.ID);
                 Assert.Equal(td.ID, foundToDo.ID);
             }
-
         }
     }
 }

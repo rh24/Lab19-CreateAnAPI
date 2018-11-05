@@ -4,14 +4,16 @@ using Lab19_CreateAnApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lab19_CreateAnApi.Migrations
 {
     [DbContext(typeof(CreateAnAPIDbContext))]
-    partial class CreateAnAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181105061853_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,12 +40,6 @@ namespace Lab19_CreateAnApi.Migrations
                     b.HasIndex("ToDoListID");
 
                     b.ToTable("ToDos");
-
-                    b.HasData(
-                        new { ID = 2, DateCreated = new DateTime(2018, 11, 4, 22, 35, 38, 623, DateTimeKind.Local), IsComplete = false, Name = "Do all the labs", ToDoListID = 1 },
-                        new { ID = 3, DateCreated = new DateTime(2018, 11, 4, 22, 35, 38, 623, DateTimeKind.Local), IsComplete = true, Name = "Buy groceries", ToDoListID = 1 },
-                        new { ID = 4, DateCreated = new DateTime(2018, 11, 4, 22, 35, 38, 623, DateTimeKind.Local), IsComplete = true, Name = "Laundry", ToDoListID = 1 }
-                    );
                 });
 
             modelBuilder.Entity("Lab19_CreateAnApi.Models.ToDoList", b =>

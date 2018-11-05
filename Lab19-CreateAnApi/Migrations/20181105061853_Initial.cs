@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Lab19_CreateAnApi.Migrations
 {
-    public partial class changeAccessibilityOfNavProps : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +15,7 @@ namespace Lab19_CreateAnApi.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    DateTime = table.Column<string>(nullable: true)
+                    DateCreated = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,8 +30,8 @@ namespace Lab19_CreateAnApi.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     IsComplete = table.Column<bool>(nullable: false),
-                    DateTime = table.Column<string>(nullable: true),
-                    ToDoListID = table.Column<int>(nullable: true)
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    ToDoListID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +41,7 @@ namespace Lab19_CreateAnApi.Migrations
                         column: x => x.ToDoListID,
                         principalTable: "ToDoLists",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

@@ -34,6 +34,7 @@ namespace Lab19_CreateAnApi.Controllers
         {
             var todo = _context.ToDos.FirstOrDefault(t => t.ID == id);
             if (todo == null) return NotFound();
+            todo.ToDoList = _context.ToDoLists.FirstOrDefault(tdl => tdl.ID == id);
 
             return Ok(todo);
         }

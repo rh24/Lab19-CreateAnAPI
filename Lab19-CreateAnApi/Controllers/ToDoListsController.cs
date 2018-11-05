@@ -35,6 +35,8 @@ namespace Lab19_CreateAnApi.Controllers
             var list = _context.ToDoLists.FirstOrDefault(t => t.ID == id);
             if (list == null) return NotFound();
 
+            list.ToDos = _context.ToDos.Where(td => td.ToDoListID == id).ToList();
+
             return Ok(list);
         }
 

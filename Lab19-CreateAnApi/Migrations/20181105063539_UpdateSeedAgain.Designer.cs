@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lab19_CreateAnApi.Migrations
 {
     [DbContext(typeof(CreateAnAPIDbContext))]
-    [Migration("20181104073822_changeAccessibilityOfNavProps")]
-    partial class changeAccessibilityOfNavProps
+    [Migration("20181105063539_UpdateSeedAgain")]
+    partial class UpdateSeedAgain
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -27,19 +27,25 @@ namespace Lab19_CreateAnApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DateTime");
+                    b.Property<DateTime>("DateCreated");
 
                     b.Property<bool>("IsComplete");
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("ToDoListID");
+                    b.Property<int>("ToDoListID");
 
                     b.HasKey("ID");
 
                     b.HasIndex("ToDoListID");
 
                     b.ToTable("ToDos");
+
+                    b.HasData(
+                        new { ID = 2, DateCreated = new DateTime(2018, 11, 4, 22, 35, 38, 623, DateTimeKind.Local), IsComplete = false, Name = "Do all the labs", ToDoListID = 1 },
+                        new { ID = 3, DateCreated = new DateTime(2018, 11, 4, 22, 35, 38, 623, DateTimeKind.Local), IsComplete = true, Name = "Buy groceries", ToDoListID = 1 },
+                        new { ID = 4, DateCreated = new DateTime(2018, 11, 4, 22, 35, 38, 623, DateTimeKind.Local), IsComplete = true, Name = "Laundry", ToDoListID = 1 }
+                    );
                 });
 
             modelBuilder.Entity("Lab19_CreateAnApi.Models.ToDoList", b =>
@@ -48,7 +54,7 @@ namespace Lab19_CreateAnApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DateTime");
+                    b.Property<DateTime>("DateCreated");
 
                     b.Property<string>("Name");
 
@@ -61,7 +67,8 @@ namespace Lab19_CreateAnApi.Migrations
                 {
                     b.HasOne("Lab19_CreateAnApi.Models.ToDoList", "ToDoList")
                         .WithMany("ToDos")
-                        .HasForeignKey("ToDoListID");
+                        .HasForeignKey("ToDoListID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

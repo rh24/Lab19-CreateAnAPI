@@ -11,7 +11,33 @@ namespace Lab19_CreateAnApi.Data
     {
         public CreateAnAPIDbContext(DbContextOptions<CreateAnAPIDbContext> options) : base(options)
         {
+        }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ToDo>().HasData(
+                    new ToDo
+                    {
+                        ID = 2,
+                        Name = "Do all the labs",
+                        IsComplete = false,
+                        ToDoListID = 1
+                    },
+                    new ToDo
+                    {
+                        ID = 3,
+                        Name = "Buy groceries",
+                        IsComplete = true,
+                        ToDoListID = 1
+                    },
+                    new ToDo
+                    {
+                        ID = 4,
+                        Name = "Laundry",
+                        IsComplete = true,
+                        ToDoListID = 1
+                    }
+            );
         }
 
         public DbSet<ToDo> ToDos { get; set; }

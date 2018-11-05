@@ -9,7 +9,7 @@ namespace Lab19_CreateAnApi.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string DateTime { get; set; } = new DateTime().ToString();
+        public DateTime DateCreated { get; set; } = DateTime.Now;
 
         // Navigation properties
         public ICollection<ToDo> ToDos { get; set; }

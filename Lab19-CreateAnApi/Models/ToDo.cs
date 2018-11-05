@@ -10,7 +10,8 @@ namespace Lab19_CreateAnApi.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public bool IsComplete { get; set; }
-        public string DateTime { get; set; } = new DateTime().ToString();
+        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public int ToDoListID { get; set; }
 
         // Navigation Property
         public ToDoList ToDoList { get; set; }
